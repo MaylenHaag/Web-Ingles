@@ -1,0 +1,24 @@
+{% extends "AppMaylen/base.html" %}
+
+{% load static %}
+
+{% block main %}
+    <div class="container mt-5">
+    
+        <h2>Editar usuario</h2>
+    
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <table>
+                {{ form.as_table  }}
+            </table>
+            
+            <a href="{% url 'CambiarPassword' %}">Editar contraseña</a>
+
+            <input type="submit" value="Actualizar">
+ 
+        </form>
+
+    </div>
+{% endblock %}

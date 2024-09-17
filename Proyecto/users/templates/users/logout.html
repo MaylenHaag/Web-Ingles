@@ -1,0 +1,23 @@
+
+{% extends "AppMaylen/base.html" %}
+
+{% load static %}
+
+{% block main %}
+    <div class="container mt-5">
+        <h2>Cerrar sesión</h2>
+        <form method="POST" action="{% url 'Logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="dropdown-item">Cerrar sesión</button>
+        </form>
+    </div>
+{% endblock %}
+
+
+
+
+
+
+    
+      
+    
