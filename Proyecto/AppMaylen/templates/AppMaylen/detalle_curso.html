@@ -1,0 +1,21 @@
+{% extends "AppMaylen/base.html" %}
+
+{% load static %}
+
+{% block main %}
+    <div class="container mt-5">
+    
+        <h2>Detalle del Curso</h2>
+    
+        <p>Nombre del curso: <i>{{curso.nombre}}</i></p>
+        <p>Camada: <i>{{curso.camada}}</i></p>
+        <p>Horario: <i>{{curso.horario}}</i></p>
+        <p>Autor: <i>{{ curso.autor.username }}</i></p>
+        <p>Fecha de creación: <i>{{ curso.fecha|date:"d M Y H:i" }}</i></p>
+
+        <p>
+            <a href="{% url 'lista_curso' %}">Regresar</a>
+        </p>
+
+    </div>
+{% endblock %}

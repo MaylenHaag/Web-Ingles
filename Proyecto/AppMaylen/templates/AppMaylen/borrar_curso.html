@@ -1,0 +1,18 @@
+{% extends "AppMaylen/base.html" %}
+
+{% load static %}
+
+{% block main %}
+    <div class="container mt-5">
+    
+        <form action="" method="POST">
+            {% csrf_token %}
+            ¿Seguro que desea eliminar este curso? 
+            {{curso.nombre}}
+
+            <input type="submit" value="Eliminar">
+ 
+        </form>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "AppMaylen/base.html" %}
+
+{% load static %}
+
+{% block main %}
+    <div class="container mt-5">
+    
+        <h2>Lista de Cursos</h2>
+    
+        {% if user.is_superuser %}
+                    <a href="{% url 'create_curso' %}">Crear curso</a>
+        {% endif %}
+
+        <ul class="list-group">
+            {% for curso in cursos %}
+            <li class="list-group-item">
+                <strong>{{ curso.nombre }}</strong>
+
+                {% if user.is_superuser %}
+                    <a href="{% url 'detalle_curso' curso.id %}">Ver más</a>
+                    <a href="{% url 'editar_curso' curso.id %}">Editar</a>
+                    <a href="{% url 'borrar_curso' curso.id %}">Borrar</a>
+                {% elif user.is_staff %}
+                    <a href="{% url 'detalle_curso' curso.id %}">Ver más</a>
+                    <a href="{% url 'editar_curso' curso.id %}">Editar</a>
+                {% else %}
+                    <a href="{% url 'detalle_curso' curso.id %}">Ver más</a>
+                {% endif %}
+
+            </li>
+            {% empty %}
+            <li class="list-group-item">No hay cursos disponibles.</li>
+
+            {% endfor %}    
+        </ul>
+
+    </div>
+{% endblock %}
+
+
+

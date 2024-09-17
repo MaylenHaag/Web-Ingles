@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Modern Business - Start Bootstrap Template</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="{% static 'AppMaylen/favicon.ico' %}" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'AppMaylen/css/styles.css' %}" rel="stylesheet" />
+    </head>
+
+    <body class="d-flex flex-column h-100">
+
+        <!-- Navigation-->
+         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container px-5">
+                <a class="navbar-brand" href="{% url 'index' %}">CIMC</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'lista_curso' %}">Cursos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About Us</a></li>
+                        
+                        {% if request.user.is_authenticated %}
+                            <img src="{{ request.user.avatar.imagen.url }}" alt="" height="35px">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ request.user.username }}</a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                                    <li><a class="dropdown-item" href="{% url 'EditarUsuario' %}">Editar usuario</a></li>
+                                    <li class="nav-item">
+                                        <form method="POST" action="{% url 'Logout' %}" style="display: inline;">
+                                            {% csrf_token %}
+                                            <button type="submit" class="dropdown-item" style="background: none; border: none;">Cerrar sesión</button>
+                                        </form>
+                                    </li>                                    
+                                </ul> 
+                            </li>
+                        {% else %}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Perfil</a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
+                                    <li><a class="dropdown-item" href="{% url 'Login' %}">Iniciar sesión</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'Register' %}">Registrarme</a></li>
+                                </ul>
+                            </li>
+                        {% endif %}
+                        
+                        
+                </div>
+            </div>
+        </nav>
+
+        <!-- Header-->
+        <header class="bg-dark py-5">
+            <div class="container px-5">
+                <div class="row gx-5 align-items-center justify-content-center">
+                    <div class="col-lg-8 col-xl-7 col-xxl-6">
+                        <div class="my-5 text-center text-xl-start">
+                            <h1 class="display-5 fw-bolder text-white mb-2">Cultural Inglesa <br> Monte Caseros</h1>
+                            <p class="lead fw-normal text-white-50 mb-4">Inscribite, conoce nuestros cursos y profesores!!</p>
+                            <!-- <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
+                                <a class="btn btn-primary btn-lg px-4 me-sm-3" href="#features">Get Started</a>
+                                <a class="btn btn-outline-light btn-lg px-4" href="#!">Learn More</a>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center">
+                        <img class="img-fluid rounded-3 my-5" src="{% static 'AppMaylen/assets/img/logo.png' %}" alt="Logo" />
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        {% block main %}
+        {% endblock main %}
+
+        <!-- Footer-->
+        <footer class="bg-dark py-4 mt-auto">
+            <div class="container px-5">
+                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                    <div class="col-auto"><div class="small m-0 text-white">Copyright &copy; Your Website 2024</div></div>
+                    <div class="col-auto">
+                        <a class="link-light small" href="https://www.instagram.com/culturalinglesamc?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="bi bi-instagram"></i></a>
+                        <span class="text-white mx-1">&middot;</span>
+                        <a class="link-light small" href="https://www.facebook.com/culturalinglesa.mc"><i class="bi bi-facebook"></i></a>
+                        <span class="text-white mx-1">&middot;</span>
+                        <a class="link-light small" href="{% url 'contact' %}">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="{% static 'AppMaylen/js/scripts.js' %}"></script>
+        
+    </body>
+
+</html>
